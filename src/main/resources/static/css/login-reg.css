@@ -1,0 +1,41 @@
+
+body {
+	background:url(../images/bg.jpg) no-repeat center center fixed;
+	height:100%;
+	background-size:cover;
+}
+
+#login-panel {
+	margin-top:7%;
+	box-shadow: 0 0 16px 9px #fff5f557;	
+}
+
+#login-panel a {
+	cursor:pointer;
+}
+
+.btn-lg {
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+.hidden {
+	display:none;
+}
+
+.rememberme {
+	float:right;
+}
+
+#login h5 {
+	text-align: center;
+}
+#signup h5 {
+	text-align: center;
+}
+
+.snnupai {
+	margin: 20px auto;
+	display: block;
+	height: 50px;
+}

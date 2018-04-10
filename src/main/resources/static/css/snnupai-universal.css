@@ -1,0 +1,121 @@
+/*---snnupai-universal-header---*/
+
+.snnupai-universal-header {
+	max-width: 1130px;
+	height: 210px;
+	margin: 20px auto;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+.snnupai-universal-header .snnupai-universal-header-bg {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	background: url(../images/flea-market-bg.jpg);
+}
+
+
+.snnupai-universal-header .snnupai-universal-header-bg .snnupai-universal-title {
+	padding-top: 5%;
+}
+
+.snnupai-universal-header .snnupai-universal-header-bg .snnupai-universal-title h1 {
+	text-align: center;
+	color: #fff;
+	letter-spacing: 10px;
+	font-size: 50px;
+}
+
+.snnupai-universal-header .snnupai-universal-header-bg .snnupai-universal-edit button {
+	float: right;
+	margin: 20px;
+	background-color: #fff;
+	border: 1px dashed #f28c48;
+	border-radius: 5px;
+}
+
+.snnupai-universal-header .snnupai-universal-header-bg .snnupai-universal-edit button:hover {
+	background-color: #f28c48;
+	color: #fff;
+}
+/*---snnupai-universal-header-end---*/
+
+
+/*---profile-body---*/
+
+.snnupai-universal-body {
+	max-width: 1130px;
+	margin: 0 auto 30px;
+}
+
+.snnupai-universal-body .row {
+	margin: 0;
+}
+
+.snnupai-universal-body .row ul {
+	padding: 0;
+}
+
+.snnupai-universal-body .row li {
+	height: 350px;
+	margin: 10px 0;
+
+}
+.snnupai-universal-body .row li .snnupai-universal-info {
+	position: relative;
+	box-shadow: 0px 0px 15px #88888847;
+	width: 90%;
+	height: 100%;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+.snnupai-universal-body .row li .snnupai-universal-info .snnupai-universal-des {
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.snnupai-universal-body .row li .snnupai-universal-info img {
+	width: 100%;
+	height: 52%;
+}
+
+
+/*---profile-body-end---*/
+
+/*---back-to-top   feedback---*/
+
+.back_to_top{
+	position: fixed;
+	z-index: 100;
+	bottom: 90px;
+	right: 30px;
+	border: 1px solid #888;
+	padding: 12px 12px;
+}
+
+.snnupai-feedback {
+	position: fixed;
+	z-index: 100;
+	bottom: 30px;
+	right: 30px;
+	border: 1px solid #888;
+	padding: 12px 12px;
+}
+
+
+/*---back-to-top   feedback---end---*/
+
+
+/*---modal---*/
+
+.modal .modal-dialog .modal-content .modal-body .form-group label {
+	margin-top: 10px;
+}
+
+.modal-footer {
+	border-top: none;
+}
+
+/*---modal-end---*/

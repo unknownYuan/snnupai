@@ -1,0 +1,99 @@
+.flea-market-product-body .row .flea-market-product-pic img {
+	width: 80%;
+	margin: 20px auto;
+	display: block;
+}
+
+
+.flea-market-product-body {
+
+	max-width: 1130px;
+	margin: 0 auto 30px;
+}
+
+.flea-market-product-body .row {
+	margin: 0;
+}
+
+.flea-market-product-body .flea-market-product-content-body {
+	margin-top: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+
+
+.flea-market-product-body .flea-market-product-content-body .flea-market-product-plate ul li{
+	float: left;
+	padding: 0 20px;
+	margin-right: 12px;
+	height: auto;
+}
+
+.flea-market-product-body .flea-market-product-content-body .flea-market-product-content {
+	margin-top: 50px;
+}
+
+.flea-market-product-body  .flea-market-product-plate ul li a {
+	text-decoration: none;
+	color: #333;
+}
+
+
+.flea-market-product-body .flea-market-product-content-body .flea-market-product-plate ul .chosen {
+	border-bottom: 2px solid #f28c48;
+}
+
+
+.flea-market-product-body  .flea-market-product-content .flea-market-universal {
+	margin-top: 69px;
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-img ul li {
+	height: auto;
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-img ul li div img {
+	display: block;
+	width: 800px;
+	margin: 10px auto;
+}
+.flea-market-product-body  .flea-market-product-content .flea-market-product-comment {
+	margin-left: 20px;
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-comment ul {
+
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-comment ul li {
+	height: auto;
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-comment ul li div {
+	display: inline-block;
+	border-bottom: 1px solid #80808052;
+}
+
+.flea-market-product-body  .flea-market-product-content .flea-market-product-comment form {
+	width: 80%;
+}
+
+.collected {
+	color: #fff;
+	background-color: #f28c48;
+	border: 0;
+}
+
+.collected:hover {
+	background-color: #f28c48;
+	color: #fff;
+}
+
+.collected:focus {
+	background-color: #f28c48;
+	color: #fff;
+}
+
+
+

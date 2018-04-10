@@ -1,0 +1,32 @@
+.anonymous {
+    padding: 0 10px;
+}
+
+.collection {
+    width: 100%;
+    position: absolute;
+    border-top: 1px solid #8080802b;
+
+    bottom: 10px;
+}
+
+.collection button {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.collected {
+    color: #fff;
+    background-color: #f28c48;
+    border: 0;
+}
+
+.collected:hover {
+    background-color: #f28c48;
+    color: #fff;
+}
+
+.collected:focus {
+    background-color: #f28c48;
+    color: #fff;
+}
