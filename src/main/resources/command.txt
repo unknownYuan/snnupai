@@ -1,0 +1,10 @@
+--
+netstat -ano | findstr 8889
+taskkill -pid pid -f
+
+
+--
+Shift+Ctrl+Alt+/，选择Registry
+
+--- freemark 显示list<Map<String, Object>>
+https://blog.csdn.net/zengmingen/article/details/52025224

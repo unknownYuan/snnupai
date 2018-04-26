@@ -18,11 +18,11 @@ public class LoveService {
 
     public List<Love> getLoveList(int offset, int limit) {
         LoveExample example = new LoveExample();
-        example.setOffset(offset);
+        example.setOffset((offset - 1) * limit);
         example.setLimit(limit);
         example.setOrderByClause(" `id`  desc ");
 
-        return loveMapper.selectByExample(example);
+        return loveMapper.selectByExampleWithBLOBs(example);
     }
 
     public void addLove(Love love) {

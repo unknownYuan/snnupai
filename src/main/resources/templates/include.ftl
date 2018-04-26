@@ -8,9 +8,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 
-	<!-- Swiper -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.js"></script>
+
 
 	<!-- 自定义CSS -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">

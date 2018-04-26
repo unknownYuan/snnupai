@@ -3,13 +3,17 @@
 <mapper namespace="me.snnupai.door.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="me.snnupai.door.pojo.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="entity_id" jdbcType="VARCHAR" property="entityId" />
+    <result column="anonymous" jdbcType="INTEGER" property="anonymous" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="ban_kuai_type" jdbcType="INTEGER" property="banKuaiType" />
     <result column="entity_type" jdbcType="INTEGER" property="entityType" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
-    <result column="annonymous" jdbcType="INTEGER" property="annonymous" />
     <result column="updated_date" jdbcType="TIMESTAMP" property="updatedDate" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="post_id" jdbcType="VARCHAR" property="postId" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="me.snnupai.door.pojo.Comment">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -73,7 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, entity_id, entity_type, created_date, annonymous, updated_date, status
+    id, entity_id, anonymous, remarks, ban_kuai_type, entity_type, created_date, updated_date, 
+    created_by, update_by, status, post_id
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -135,14 +140,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="me.snnupai.door.pojo.Comment">
-    insert into comment (id, user_id, entity_id, 
-      entity_type, created_date, annonymous, 
-      updated_date, status, content
-      )
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{entityId,jdbcType=VARCHAR}, 
-      #{entityType,jdbcType=INTEGER}, #{createdDate,jdbcType=TIMESTAMP}, #{annonymous,jdbcType=INTEGER}, 
-      #{updatedDate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
-      )
+    insert into comment (id, entity_id, anonymous, 
+      remarks, ban_kuai_type, entity_type, 
+      created_date, updated_date, created_by, 
+      update_by, status, post_id, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{entityId,jdbcType=VARCHAR}, #{anonymous,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{banKuaiType,jdbcType=INTEGER}, #{entityType,jdbcType=INTEGER}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{updatedDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{postId,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="me.snnupai.door.pojo.Comment">
     insert into comment
@@ -150,11 +157,17 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
-      </if>
       <if test="entityId != null">
         entity_id,
+      </if>
+      <if test="anonymous != null">
+        anonymous,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="banKuaiType != null">
+        ban_kuai_type,
       </if>
       <if test="entityType != null">
         entity_type,
@@ -162,14 +175,20 @@
       <if test="createdDate != null">
         created_date,
       </if>
-      <if test="annonymous != null">
-        annonymous,
-      </if>
       <if test="updatedDate != null">
         updated_date,
       </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="postId != null">
+        post_id,
       </if>
       <if test="content != null">
         content,
@@ -179,11 +198,17 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
       <if test="entityId != null">
         #{entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="anonymous != null">
+        #{anonymous,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="banKuaiType != null">
+        #{banKuaiType,jdbcType=INTEGER},
       </if>
       <if test="entityType != null">
         #{entityType,jdbcType=INTEGER},
@@ -191,14 +216,20 @@
       <if test="createdDate != null">
         #{createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="annonymous != null">
-        #{annonymous,jdbcType=INTEGER},
-      </if>
       <if test="updatedDate != null">
         #{updatedDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -217,11 +248,17 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
       <if test="record.entityId != null">
         entity_id = #{record.entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.anonymous != null">
+        anonymous = #{record.anonymous,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banKuaiType != null">
+        ban_kuai_type = #{record.banKuaiType,jdbcType=INTEGER},
       </if>
       <if test="record.entityType != null">
         entity_type = #{record.entityType,jdbcType=INTEGER},
@@ -229,14 +266,20 @@
       <if test="record.createdDate != null">
         created_date = #{record.createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.annonymous != null">
-        annonymous = #{record.annonymous,jdbcType=INTEGER},
-      </if>
       <if test="record.updatedDate != null">
         updated_date = #{record.updatedDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.postId != null">
+        post_id = #{record.postId,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -249,13 +292,17 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update comment
     set id = #{record.id,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=BIGINT},
       entity_id = #{record.entityId,jdbcType=VARCHAR},
+      anonymous = #{record.anonymous,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      ban_kuai_type = #{record.banKuaiType,jdbcType=INTEGER},
       entity_type = #{record.entityType,jdbcType=INTEGER},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP},
-      annonymous = #{record.annonymous,jdbcType=INTEGER},
       updated_date = #{record.updatedDate,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=BIGINT},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
       status = #{record.status,jdbcType=INTEGER},
+      post_id = #{record.postId,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -264,13 +311,17 @@
   <update id="updateByExample" parameterType="map">
     update comment
     set id = #{record.id,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=BIGINT},
       entity_id = #{record.entityId,jdbcType=VARCHAR},
+      anonymous = #{record.anonymous,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      ban_kuai_type = #{record.banKuaiType,jdbcType=INTEGER},
       entity_type = #{record.entityType,jdbcType=INTEGER},
       created_date = #{record.createdDate,jdbcType=TIMESTAMP},
-      annonymous = #{record.annonymous,jdbcType=INTEGER},
       updated_date = #{record.updatedDate,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=INTEGER}
+      created_by = #{record.createdBy,jdbcType=BIGINT},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=INTEGER},
+      post_id = #{record.postId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -278,11 +329,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="me.snnupai.door.pojo.Comment">
     update comment
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
       <if test="entityId != null">
         entity_id = #{entityId,jdbcType=VARCHAR},
+      </if>
+      <if test="anonymous != null">
+        anonymous = #{anonymous,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="banKuaiType != null">
+        ban_kuai_type = #{banKuaiType,jdbcType=INTEGER},
       </if>
       <if test="entityType != null">
         entity_type = #{entityType,jdbcType=INTEGER},
@@ -290,14 +347,20 @@
       <if test="createdDate != null">
         created_date = #{createdDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="annonymous != null">
-        annonymous = #{annonymous,jdbcType=INTEGER},
-      </if>
       <if test="updatedDate != null">
         updated_date = #{updatedDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
@@ -307,25 +370,33 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="me.snnupai.door.pojo.Comment">
     update comment
-    set user_id = #{userId,jdbcType=BIGINT},
-      entity_id = #{entityId,jdbcType=VARCHAR},
+    set entity_id = #{entityId,jdbcType=VARCHAR},
+      anonymous = #{anonymous,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      ban_kuai_type = #{banKuaiType,jdbcType=INTEGER},
       entity_type = #{entityType,jdbcType=INTEGER},
       created_date = #{createdDate,jdbcType=TIMESTAMP},
-      annonymous = #{annonymous,jdbcType=INTEGER},
       updated_date = #{updatedDate,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
+      post_id = #{postId,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="me.snnupai.door.pojo.Comment">
     update comment
-    set user_id = #{userId,jdbcType=BIGINT},
-      entity_id = #{entityId,jdbcType=VARCHAR},
+    set entity_id = #{entityId,jdbcType=VARCHAR},
+      anonymous = #{anonymous,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      ban_kuai_type = #{banKuaiType,jdbcType=INTEGER},
       entity_type = #{entityType,jdbcType=INTEGER},
       created_date = #{createdDate,jdbcType=TIMESTAMP},
-      annonymous = #{annonymous,jdbcType=INTEGER},
       updated_date = #{updatedDate,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER}
+      created_by = #{createdBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      post_id = #{postId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

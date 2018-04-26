@@ -10,8 +10,8 @@
             <div class="menu-box">
                 <ul class="menu-list-content">
                     <li class="menu-list-box"><a href="/index">首页</a></li>
-                    <li class="menu-list-box"><a href="/trade_ftl">跳蚤市场</a></li>
-                    <li class="menu-list-box"><a href="">表白墙</a></li>
+                    <li class="menu-list-box"><a href="/trade_ftl?pagenum=1">跳蚤市场</a></li>
+                    <li class="menu-list-box"><a href="/love_list?pagenum=1">表白墙</a></li>
                     <li class="menu-list-box"><a href="">论坛</a></li>
                     <li class="menu-list-box"><a href="">老乡会</a></li>
                     <li class="menu-list-box"><a href="">新生指南</a></li>
@@ -26,8 +26,8 @@
 
                 <#if user??>
                     <ul class="login">
-                        <li>${user.nickName!''}<i></i></li>
-                        <li><a href="snnupai_profile?offset=1&limit=10">个人中心</a></li>
+                        <li><a href="snnupai_profile?offset=1&limit=10">${user.nickName!''}</a><i></i></li>
+                        <li><a href="/logout">退出</a></li>
                     </ul>
 
                 <#else>
@@ -38,4 +38,6 @@
                 </#if>
         </div>
     </nav>
+
 </header>
+

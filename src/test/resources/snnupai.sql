@@ -68,17 +68,26 @@ CREATE TABLE `trade` (
 
 
 drop table if exists `comment`;
-create table `comment`(
-	id bigint auto_increment primary key,
-	content text not null comment '评论内容',
-	user_id bigint not null,
-	entity_id bigint not null,
-	entity_type int not null,
-	`created_date` datetime not null,
-	updated_date DATETIME not null,
-	`status` int not null default 0,
-	INDEX `entity_index` (`entity_id` ASC, `entity_type` ASC)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论表';
+CREATE TABLE `comment` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `content` TEXT NOT NULL COMMENT '评论内容',
+  `from_id` VARCHAR(50) NOT NULL COMMENT '发表评论的人id',
+  `to_id` VARCHAR(50) NOT NULL COMMENT '被评论实体id',
+  `entity_id` BIGINT(20) NOT NULL,
+  `remarks` VARCHAR(128) NOT NULL COMMENT '备注',
+  `ban_kuai_type` INT(11) NOT NULL COMMENT '板块类型',
+  `entity_type` INT(11) NOT NULL COMMENT '实体类型',
+  `created_date` DATETIME NOT NULL,
+  `updated_date` DATETIME NOT NULL,
+  `status` INT(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  INDEX `entity_index` (`entity_id`, `entity_type`)
+)
+  COMMENT='评论表'
+  COLLATE='utf8_general_ci'
+  ENGINE=InnoDB
+;
+
 
 
 drop table if exists `love`;

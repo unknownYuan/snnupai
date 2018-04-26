@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>陕师派</title>
+    <!-- Swiper -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/swiper.js"></script>
     <#include "include.ftl">
 </head>
 <script>
@@ -28,7 +31,11 @@ console.log("ghd")
 <body>
     <div id="body">
         <#include "header.ftl">
-
+        <div class="marquee">
+            <span class="marquee-content">
+                ${gonggao}<span class="content-space"></span>
+            </span>
+        </div>
         <div class="carousel">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -209,6 +216,38 @@ console.log("ghd")
             //   el: '.swiper-scrollbar',
             // },
         })
+    </script>
+
+    <#--公告-->
+    <script>
+        (function () {
+            var speed = 50; // 速度 -- px每秒
+
+            var $marquee = $('.marquee');
+            var $marqueeContent = $('.marquee-content');
+            // 内容复制3份好有连续性
+
+            var marqueeWidth = $marquee[0].getBoundingClientRect().width;
+            var contentWidth = $marqueeContent[0].getBoundingClientRect().width;
+            var mul = marqueeWidth / contentWidth + 1;
+            var text = "";
+            for( i=0; i<mul; i++){
+                text += $marqueeContent.text() + "&emsp;&emsp;&emsp;&emsp;&emsp;";
+            }
+            $marqueeContent.html(text);
+
+            if (contentWidth <= 0) { // 没有内容搞什么动画
+                return;
+            }
+
+            // 内容复制了3份，宽度也要除以3
+            //contentWidth = contentWidth / mul;
+
+            // 计算一次动画应该要花费多少时间
+            //var onceTime = contentWidth / speed * 1000; //ms
+
+            //$marqueeContent[0].style.animationDuration = onceTime + "ms";
+        })()
     </script>
 </body>
 </html>

@@ -1,93 +1,92 @@
 #body {
-    position: relative;
-    padding-bottom: 229px;
-    background-color: #f4f4f4;
+	position: relative;
+	padding-bottom: 229px;
+	background-color: #f4f4f4;
 }
 
 ul li {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 /*---header---*/
 
 header {
-    background-color: #f28c48;
-    color: #fff;
+	background-color: #f28c48;
+	color: #fff;
 }
 
 header nav {
-    height: 72px;
+	height: 72px;
 }
 
 header nav a {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 header nav .logo {
-    position: absolute;
-    top: 18px;
-    left: 5%;
+	position: absolute;
+	top: 18px;
+	left: 5%;
 }
 
 header nav .menu {
-    padding-left: 20%;
+	padding-left: 20%;
 }
 
 header nav .menu .menu-box {
-    text-align: center;
+	text-align: center;
 }
 
 header nav .menu .menu-box  .menu-list-content{
-    height: 56px;
-    margin: 0 auto;
+	height: 56px;
+	margin: 0 auto;
 }
 
 header nav .menu .menu-box  .menu-list-content li{
-    float: left;
-    cursor: pointer;
-    height: 56px;
-    line-height: 72px;
-    margin-left: 1.5%;
-    margin-right: 1.5%;
+	float: left;
+	cursor: pointer;
+	height: 56px;
+	line-height: 72px;
+	margin-left: 1.5%;
+	margin-right: 1.5%;
 }
 
 header nav .menu .menu-box  .menu-list-content li a{
-    color: #fff;
+	color: #fff;
 }
 
 header nav .user-center {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 192px;
-    height: 56px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 240px;
+	height: 56px;
 }
 
 header nav .user-center ul {
-    float: right;
-    width: 280px;
+	float: right;
 }
 
 header nav .user-center ul li {
-    float: left;
-    line-height: 72px;
+	float: left;
+	line-height: 72px;
 }
 
 header nav .user-center ul li a{
-    color: #fff;
+	color: #fff;
 }
 
 header nav .user-center ul li i {
-    display: inline-block;
-    width: 1px;
-    height: 10px;
-    background: #444;
-    margin-left: 10px;
-    margin-right: 10px;
+	display: inline-block;
+	width: 1px;
+	height: 10px;
+	background: #444;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 /*---header-end---*/
@@ -95,86 +94,118 @@ header nav .user-center ul li i {
 /*---footer---*/
 
 footer {
-    width: 100%;
-    height: 229px;
-    background-color: #282828;
-    position: absolute;
-    bottom: 0;
+	width: 100%;
+	height: 229px;
+	background-color: #282828;
+	position: absolute;
+	bottom: 0;
 }
 
 footer .footer-wrapper {
-    height: 100%;
-    width: 75%;
-    margin: 0 auto;
-    color: #666;
+	height: 100%;
+	width: 75%;
+	margin: 0 auto;
+	color: #666;
 }
 
 footer .footer-wrapper .footer-wrapper-top {
-    height: 130px;
-    width: 100%;
-    line-height: 130px;
-    border-bottom: 1px solid #333;
+	height: 130px;
+	width: 100%;
+	line-height: 130px;
+	border-bottom: 1px solid #333;
 }
 
 footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left {
-    float: left;
+	float: left;
 }
 
 footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right {
-    float: right;
+	float: right;
 }
 
 footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left a {
-    margin-right: 50px;
-    color: #666;
+	margin-right: 50px;
+	color: #666;
 }
 
 footer .footer-wrapper .footer-wrapper-bottom {
-    position: relative;
-    margin-top: 24px;
-    font-size: 12px;
+	position: relative;
+	margin-top: 24px;
+	font-size: 12px;
 }
 
 footer .footer-wrapper .footer-wrapper-bottom a {
-    color: #666;
+	color: #666;
 }
 
 footer .footer-wrapper i {
-    display: inline-block;
-    width: 1px;
-    height: 12px;
-    background-color: #666;
-    vertical-align: middle;
-    margin: 0 19px;
+	display: inline-block;
+	width: 1px;
+	height: 12px;
+	background-color: #666;
+	vertical-align: middle;
+	margin: 0 19px;
 }
 
 footer .footer-wrapper .space-footer-bottom a{
-    color: #666;
-    font-size: 12px;
+	color: #666;
+	font-size: 12px;
 }
 
 footer .footer-wrapper .space-footer-bottom .copyrightLink {
-    font-size: 12px;
-    float: right;
+	font-size: 12px;
+	float: right;
 }
 
 /*---footer-end---*/
 
+
+/*------announcement-------*/
+
+@keyframes kf-marque-animation{ 0% { transform: translateX(0); } 100% { transform: translateX(-33.3%); } }
+.marquee{
+	width: 100%;
+	height: 35px;
+	width: 100%;
+	line-height: 35px;
+	background: #fdd6bc4f;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: clip;
+	position: relative;
+}
+.marquee .marquee-content{
+	width: auto;
+	display: inline-block;
+	position: relative;
+	padding-right: 0px;
+	white-space: nowrap;
+	animation: kf-marque-animation 12s infinite linear;
+}
+.marquee .content-space{
+	display: inline-block;
+	width: 5em;
+}
+
+/*------announcement-end-------*/
+
 /*---banner---*/
 
 .carousel {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: white;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: white;
 
 }
 
 .swiper-container {
     max-width: 1130px;
     height: 300px;
-    border-radius:15px;
-    box-shadow: 0px 0px 20px #888888;
-}
+	border-radius:15px;
+	box-shadow: 0px 0px 20px #888888;
+}  
 
 /*---banner-end---*/
 
@@ -182,57 +213,57 @@ footer .footer-wrapper .space-footer-bottom .copyrightLink {
 
 
 .snnupai-content {
-
+	
 }
 
 /*------portal------*/
 .snnupai-content .portal {
-    max-width: 1130px;
-    margin: 20px auto;
-    border-radius:10px;
-    background-color: #fff;
-    box-shadow: 0px 0px 15px #88888847;
-    overflow: hidden; /*撑开父元素*/
+	max-width: 1130px;
+	margin: 20px auto;
+	border-radius:10px;
+	background-color: #fff;
+	box-shadow: 0px 0px 15px #88888847;
+	overflow: hidden; /*撑开父元素*/
 }
 
-.forum-title  {
-    border-bottom: 3px solid #dadada;
+ .forum-title  {
+	border-bottom: 3px solid #dadada;
 }
 
-.forum-title {
-    padding-top: 10px;
-    margin: 0 20px;
+ .forum-title {
+	padding-top: 10px;
+	margin: 0 20px;
 }
 
 .snnupai-content .portal .portal-content {
-    margin: 20px 20px;
+	margin: 20px 20px;
 }
 
 .snnupai-content .portal .portal-content span a{
-    font-size: 15px;
+	font-size: 15px;
 }
 
 .snnupai-content .portal .portal-content i {
-    display: inline-block;
-    width: 1px;
-    height: 12px;
-    background-color: #666;
-    vertical-align: middle;
-    margin: 0 19px;
+	display: inline-block;
+	width: 1px;
+	height: 12px;
+	background-color: #666;
+	vertical-align: middle;
+	margin: 0 19px;
 }
 
 .snnupai-content .portal .portal-content .portal-content-row {
-    margin: 5px auto;
+	margin: 5px auto;
 }
 /*------portal-end------*/
 
 /*------banner-box------*/
 
 .snnupai-content .banner-box {
-    max-width: 1130px;
-    height: 120px;
-    margin: 10px auto;
-    overflow: hidden; /*撑开父元素*/
+	max-width: 1130px;
+	height: 120px;
+	margin: 10px auto;
+	overflow: hidden; /*撑开父元素*/
 }
 
 /*------banner-box-end------*/
@@ -240,74 +271,74 @@ footer .footer-wrapper .space-footer-bottom .copyrightLink {
 /*------section-entrance------*/
 
 .snnupai-content .snnupai-module {
-    max-width: 1130px;
-    margin: 20px auto;
-    overflow: hidden; /*撑开父元素*/
+	max-width: 1130px;
+	margin: 20px auto;
+	overflow: hidden; /*撑开父元素*/
 }
 
 .snnupai-content .content {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 
 .snnupai-content .snnupai-module .content .row .col-md-3 ul {
-    padding: 0;
+	padding: 0;
 }
 
 .snnupai-content .snnupai-module .content .row li:hover {
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    transform: translate3d(0, -2px, 0);
+	box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+	transform: translate3d(0, -2px, 0);
 }
 
 .snnupai-content .snnupai-module .content .row .col-md-3 ul li{
-    width: 270px;
+	width: 270px;
 }
 
 .snnupai-content .snnupai-module .content .row .col-md-9 {
-    padding: 0;
+	padding: 0;
 }
 
 .snnupai-content .snnupai-module .content .row .col-md-9 ul {
-    padding: 0;
+	padding: 0;
 }
 .snnupai-content .snnupai-module .content .row .col-md-9 ul li{
-    float: left;
-    height: 240px;
-    width: 260px;
-    background-color: white;
+	float: left;
+	height: 240px;
+	width: 260px;
+	background-color: white;
 }
 
 .snnupai-content .snnupai-module .content .row .col-md-9 ul .one-row {
-    margin-top: 0;
-    margin-left: 25px;
-    margin-right: 0;
-    margin-bottom: 20px;
+	margin-top: 0;
+	margin-left: 25px;
+	margin-right: 0;
+	margin-bottom: 20px;
 }
 
 .snnupai-content .snnupai-module .content .row .col-md-9 ul .two-row {
-    margin-top: 0;
-    margin-left: 25px;
-    margin-right: 0;
-    margin-bottom: 0;
+	margin-top: 0;
+	margin-left: 25px;
+	margin-right: 0;
+	margin-bottom: 0;
 }
 /*------section-entrance-end------*/
 
 /*------special-events------*/
 
 .special-events .content .row {
-    margin: 0;
+	margin: 0;
 }
 
 .special-events .content .row div ul {
-    padding: 0;
+	padding: 0;
 }
 .special-events .content .row div ul li {
-    float: left;
-    margin-right: 16px;
+	float: left;
+	margin-right: 16px;
 }
 
 .special-events .content .row div ul .last-one {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 /*------special-events-end------*/

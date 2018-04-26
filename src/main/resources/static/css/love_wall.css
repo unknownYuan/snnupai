@@ -1,0 +1,105 @@
+/*---love-wall-header---*/
+
+.love-wall-header .love-wall-header-bg {
+	background: url(../images/love-bg.jpg);
+}
+
+.love-wall-header .love-wall-header-bg .love-wall-title h1 {
+	text-align: left;
+	padding-left: 30%;
+	color: gray;
+}
+
+/*---love-wall-header-end---*/
+
+.love-wall-body .row ul .love-wall-li {
+	background-color: #fff;
+	height: auto;
+	padding-bottom: 40px;
+	padding-left: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px #88888847;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-personal-info {
+	padding-top:10px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-personal-info img{
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	border-radius: 25px;
+	background-color: red;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-personal-info h4 {
+	display: inline-block;
+	position: relative;
+	top: 3px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-info {
+	margin:0 60px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-comment {
+	margin-left: 62px;
+    margin-top: 14px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-comment ul li {
+	height: auto;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-more {
+	margin-right: 70px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-more .love-comment {
+	padding: 3px 6px;
+	font-size: 10px;    
+	padding: 3px 6px;
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-more .love-like {
+	padding: 3px 6px;
+	margin-left: 20px;	
+}
+
+.love-wall-body .row li .love-wall-info-content .love-wall-more > span {
+	display: inline-block;
+	margin-top: 4px;
+}
+ 
+.love-wall-anonymous {
+	padding: 0 10px;
+}
+
+.love-wall-area {
+	padding: 10px;
+}
+
+.collected {
+	background-color: #f28c48;
+    color: #fff;
+}
+
+.collected:focus {
+	background-color: #f28c48;
+    color: #fff;
+}
+
+.collected:hover {
+	background-color: #f28c48;
+    color: #fff;
+}
+
+
+/*#head-img {
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	border-radius: 25px;
+	
+}*/

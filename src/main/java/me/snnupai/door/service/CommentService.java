@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.snnupai.door.mapper.CommentMapper;
 import me.snnupai.door.pojo.Comment;
 import me.snnupai.door.pojo.CommentExample;
+import me.snnupai.door.status.CommentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +39,25 @@ public class CommentService {
     }
 
     public List<Comment> queryAllCommentsByEntityId(int type, String id) {
-//        CommentExample example = new CommentExample();
-//        CommentExample.Criteria criteria = example.createCriteria();
-//        criteria.andEntityTypeEqualTo(type)
-//                .andEntityIdEqualTo(id);
         return null;
+    }
+
+    public List<Comment> queryAllCommentsByEntityId(int banKuaiType, String id, int offset, int limit) {
+        CommentExample example = new CommentExample();
+
+        example.setOffset(offset);
+        example.setLimit(limit);
+        example.setOrderByClause(" `created_date` asc ");
+
+        CommentExample.Criteria criteria = example.createCriteria();
+        criteria.andBanKuaiTypeEqualTo(banKuaiType)
+                .andPostIdEqualTo(id)
+                .andStatusEqualTo(CommentStatus.normal);
+
+        return commentMapper.selectByExampleWithBLOBs(example);
+    }
+
+    public Comment queryOneById(long id) {
+        return commentMapper.selectByPrimaryKey(id);
     }
 }

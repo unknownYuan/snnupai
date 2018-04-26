@@ -6,6 +6,9 @@
     <#include "include.ftl">
     <link rel="stylesheet" type="text/css" href="css/snnupai-universal.css">
     <link rel="stylesheet" type="text/css" href="css/flea_market.css">
+
+    <#--分页-->
+    <script src="js/jqpaginator.min.js"></script>
 </head>
 <body>
 <div id="body">
@@ -25,7 +28,7 @@
 
 <div class="lost-and-found-body content snnupai-universal-body">
 
-    <div class="row">
+    <div class="row flea-market-content">
 
         <#--搜索框-->
         <#--<div class="col-md-6">-->
@@ -38,8 +41,8 @@
         <#--</div>-->
         <#--<br><br>-->
 
-        <ul>
-            <#list initTrades as trade>
+        <ul class="snnupai-universal-ul">
+            <#list trades as trade>
             <#--li用来重复-->
             <li class="col-md-3">
                 <div class="lost-and-found-info snnupai-universal-info">
@@ -53,11 +56,11 @@
                     </div>
                     <div class="collection">
                         <#if trade.follow == "unfollow" >
-                            <button type="button" id="add-collection" class=" btn btn-default btn-sm pull-right" onclick="addcollection(this, '${ trade.id }')">
+                            <button type="button" class=" btn btn-default btn-sm pull-right" onclick="addcollection(this, '${ trade.id }')">
                                 <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> <span class="shoucang">收藏</span>
                             </button>
                         <#else>
-                            <button type="button" id="add-collection" class="collected btn btn-default btn-sm pull-right" onclick="addcollection(this, '${ trade.id }')">
+                            <button type="button" class="collected btn btn-default btn-sm pull-right" onclick="addcollection(this, '${ trade.id }')">
                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span class="quxiao">取消</span>
                             </button>
                         </#if>
@@ -67,7 +70,10 @@
             </li>
             </#list>
         </ul>
+
+
     </div>
+    <div><ul class="pagination" id="pagination1"></ul></div>
 </div>
 
 <button class="btn back_to_top">返回顶部</button>
@@ -195,6 +201,23 @@
 
 <#include "footer.ftl">
 
+    <script>
+        var is_first_time = true;
+        $("#pagination1").jqPaginator({
+            totalPages: ${ totalPages }, //总页数
+            visiblePages: 10,
+            currentPage: ${ currentNum } ,
+            onPageChange: function (num, type) {
+                //$('#p1').text(type + '：' + num);
+                if(is_first_time){
+                    is_first_time = false;
+                }
+                else if(!is_first_time){
+                    window.location.href = "/trade_ftl?pagenum="+num;
+                }
+            }
+        });
+    </script>
 <#--回到头部、意见反馈按钮的JS-->
 <script>
     $(document).ready(function(){
@@ -265,7 +288,7 @@
 <script>
     function addcollection(obj, id) {
 
-        alert("123");// 收藏ajax
+        // 收藏ajax
         $.ajax({
             url: "/trade/follow?id=" + id ,
             type: "post",
@@ -274,7 +297,6 @@
             scriptCharset: 'utf-8',
             contentType: 'application/json',
             success: function(data) {
-                alert("123");
                 var gly = $(obj).children(".glyphicon");
                 //已收藏
                 if(data == "1"){
@@ -345,6 +367,71 @@
 
 
 </script>
+
+
+
+<#--下拉刷新-->
+<#--<script>-->
+    <#--var num = 1;-->
+    <#--if(num != 1000000) {-->
+        <#--$(window).scroll(function () {-->
+            <#--var scrollPos = $(this).scrollTop();-->
+            <#--var dbHiht = $(document).height();-->
+
+            <#--if (dbHiht - scrollPos - $(this).height() < 30) {-->
+                <#--num++;-->
+                <#--console.log("需要开始加载");-->
+
+
+                <#--//这里执行滚动条到页面底部时的操作-->
+                <#--$.ajax({-->
+                    <#--url: "/snnupai_user/feed?offset=" + num + "&limit=10",-->
+                    <#--type: "GET",-->
+                    <#--scriptCharset: 'utf-8',-->
+                    <#--contentType: 'application/json',-->
+                    <#--dataType: 'json',-->
+                    <#--success: function (data) {-->
+                        <#--//                            eval("data=" + data);-->
+                        <#--//动态-->
+                        <#--if (data) {-->
+                            <#--var html = '';-->
+                            <#--for (var i = 0; i < data.feeds.length; i++) {-->
+                                <#--html += "<li class='col-md-3'><div class='lost-and-found-info snnupai-universal-info'>" +-->
+                                        <#--"<a href='/reafe?id=" + tradeid + "'>" + "<img src='" + tradeImageUrl + "'/></a>" +-->
+                                        <#--"<div class='lost-and-found-des snnupai-universal-des'>" +-->
+                                        <#--"<p>标题：" + title + "</p><p>时间：" + time + "</p><p>描述：" + content + "</p>" +-->
+                                        <#--"</div>" +-->
+                                        <#--"<div class='collection'>";-->
+                                <#--if (fllow == "unfollow") { //没有收藏-->
+                                    <#--html += "<button type='button' class='btn btn-default btn-sm pull-right' onclick='addcollection(this, \"" + tradeId + "\")'>" +-->
+                                            <#--"<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span> <span class='shoucang'>收藏</span>" +-->
+                                            <#--"</button>";-->
+                                <#--}-->
+                                <#--else {-->
+                                    <#--html += "<button type='button' class='collected btn btn-default btn-sm pull-right' onclick='addcollection(this, \"" + tradeId + "\")'>" +-->
+                                            <#--"<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span> <span class='shoucang'>收藏</span>" +-->
+                                            <#--"</button>";-->
+                                <#--}-->
+                                <#--html += "</div></div></li>";-->
+                            <#--}-->
+                        <#--}-->
+                        <#--else {-->
+                            <#--html += "没有更多信息了~~";-->
+                            <#--num = 1000000;-->
+                        <#--}-->
+
+                        <#--console.log(html);-->
+                        <#--$(".flea-market-content ul").append(html);-->
+                        <#--console.log($(".flea-market-content ul"));-->
+                    <#--}-->
+
+
+                <#--})-->
+            <#--}-->
+
+        <#--});-->
+    <#--}-->
+<#--</script>-->
 
 </div>
 </body>

@@ -17,7 +17,7 @@ public class Utils {
     public static final Integer cookie_expire_time = 12*3600*1000;
     public static final String fail = "fail";
     public static final String ok = "ok";
-    public static final int page_size = 20;
+    public static final int page_size = 2;
 
     public static String getJSONString(int code) {
         JSONObject json = new JSONObject();

@@ -22,7 +22,7 @@ public class JedisAdapter implements InitializingBean {
     @Override
     public void afterPropertiesSet(){
         try {
-            pool = new JedisPool("redis://10.150.218.7:6379/11");
+            pool = new JedisPool("redis://localhost:6379/11");
             System.out.println(redishost);
         }catch (Exception e){
             logger.error("连接redis 失败 " + e.getMessage());
