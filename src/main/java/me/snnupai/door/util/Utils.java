@@ -13,7 +13,6 @@ public class Utils {
 
     public static Long ANONYMOUS_USERID = 3L;
     public static Long SYSTEM_USERID = 4L;
-    public static final String cookie_name = "gbj_cart";
     public static final Integer cookie_expire_time = 12*3600*1000;
     public static final String fail = "fail";
     public static final String ok = "ok";

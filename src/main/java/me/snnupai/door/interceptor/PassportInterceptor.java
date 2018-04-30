@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-@Component
+//@Component
 public class PassportInterceptor implements HandlerInterceptor {
 
 
@@ -62,9 +62,11 @@ public class PassportInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        if (modelAndView != null && hostHolder.getUser() != null) {
-            modelAndView.addObject("user", hostHolder.getUser());
-        }
+//        if (modelAndView != null && hostHolder.getUser() != null) {
+//            modelAndView.addObject("user", hostHolder.getUser());
+//        }
+
+
     }
 
     @Override

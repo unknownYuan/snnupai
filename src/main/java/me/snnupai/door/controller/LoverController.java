@@ -1,7 +1,9 @@
 package me.snnupai.door.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import freemarker.template.utility.DateUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import me.snnupai.door.mapper.UserMapper;
 import me.snnupai.door.model.HostHolder;
@@ -38,17 +40,20 @@ public class LoverController {
     @Autowired
     UserService userService;
 
+
     @RequestMapping(path = "/love_list", method = RequestMethod.GET)
     public String queryLoveList(@RequestParam("pagenum") int pageNum,
                                 Model model) {
-//        if (hostHolder.getUser() == null) {
-//            return "redirect:/reglogin";
-//        }
         List<Map<String, Object>> loveInfos = getLoveInfos(1, 10);
         model.addAttribute("loveInfos", loveInfos);
         return "love_wall";
     }
 
+    @ApiOperation(value="获取表白墙列表", notes="用户未登录时可以查看列表，但是无法评论和点赞")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="offset", value = "第几页，从第一页开始"),
+            @ApiImplicitParam(name = "limit", value = "每页多少条信息")
+    })
     @RequestMapping(path = "/love_list_ajax", method = RequestMethod.GET)
     @ResponseBody
     public String queryLoveListByAjax(@RequestParam("offset") int offset,
@@ -56,7 +61,6 @@ public class LoverController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("loveInfos", getLoveInfos(offset, limit));
         log.info("jsonToString = " + jsonObject.toString());
-        log.info("jsonToJsonString = " + jsonObject.toString());
         return jsonObject.toString();
     }
 
@@ -85,6 +89,11 @@ public class LoverController {
     }
 
 
+    @ApiOperation(value = "发布表白信息", notes = "发布表白信息接口，必须登录才能发布")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "anonymous", value = "是否匿名发布，1表示匿名，0表示不匿名"),
+            @ApiImplicitParam(name = "content", value = "表白内容")
+    })
     @RequestMapping(path = "/love/add", method = RequestMethod.POST)
     @ResponseBody
     public String addLove(
@@ -92,11 +101,6 @@ public class LoverController {
             @RequestParam("content") String content) {
         log.info("content" + content);
         User user = hostHolder.getUser();
-        if (user == null) {
-            return "redirect:/reglogin";
-        }
-
-
         Love love = new Love();
         love.setCreatedDate(new Date());
         love.setUpdatedDate(new Date());

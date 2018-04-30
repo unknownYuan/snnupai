@@ -15,6 +15,8 @@ public class LoveService {
 
     @Autowired
     LoveMapper loveMapper;
+    @Autowired
+    SensitiveService sensitiveService;
 
     public List<Love> getLoveList(int offset, int limit) {
         LoveExample example = new LoveExample();
@@ -26,6 +28,8 @@ public class LoveService {
     }
 
     public void addLove(Love love) {
+        String filterContent = sensitiveService.filter(love.getContent());
+        love.setContent(filterContent);
         loveMapper.insertSelective(love);
     }
 }

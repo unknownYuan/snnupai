@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-//@MapperScan("me.snnupai.door.mapper")
+@MapperScan("me.snnupai.door.mapper")
 @ServletComponentScan
 @EnableSwagger2
 public class DoorApplication {

@@ -2,6 +2,7 @@ package me.snnupai.door.service;
 
 
 
+import com.alibaba.fastjson.JSONObject;
 import me.snnupai.door.async.EventProducer;
 import me.snnupai.door.mapper.FeedMapper;
 import me.snnupai.door.mapper.LoginTicketMapper;
@@ -11,7 +12,10 @@ import me.snnupai.door.status.RegisterStatus;
 import me.snnupai.door.status.UserStatus;
 import me.snnupai.door.status.VIPStatus;
 import me.snnupai.door.util.StringUtils;
-import me.snnupai.door.util.Utils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +48,7 @@ public class UserService {
         }
     }
 
-    private User selectByEmail(String email){
+    public User selectByEmail(String email){
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andEmailEqualTo(email);
@@ -57,7 +61,7 @@ public class UserService {
         }
     }
 
-    private User selectByPhone(String phone){
+    public User selectByPhone(String phone){
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andPhoneEqualTo(phone);
@@ -70,8 +74,9 @@ public class UserService {
         }
     }
 
-    public Map<String, Object> register(String nickname, String password, String email, String phone) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public JSONObject register(String nickname, String password, String email, String phone) {
+//        Map<String, Object> map = new HashMap<String, Object>();
+        JSONObject map = new JSONObject();
         if (StringUtils.isBlank(nickname)) {
             map.put("msg", "昵称不能为空");
             return map;
@@ -87,23 +92,16 @@ public class UserService {
             return map;
         }
 
-        User user = selectByNickName(nickname);
-        if (user != null) {
-            map.put("msg", "用户名已经被注册");
-            return map;
-        }
-
         if(StringUtils.isBlank(email)){
             map.put("msg", "邮箱不能为空");
             return map;
         }
-        user = selectByEmail(email);
+        User user = selectByEmail(email);
         if(user != null){
             map.put("msg", "邮箱已经被注册");
             return map;
         }
 
-        //user = userDAO.selectByPhone(phone);
         user = selectByPhone(phone);
 
         if(user != null){
@@ -136,7 +134,8 @@ public class UserService {
         user.setSalt(UUID.randomUUID().toString().substring(0, 5));
         String head = String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000));
         user.setHeadUrl(head);
-        user.setPassword(Utils.MD5(password + user.getSalt()));
+        Md5Hash hash = new Md5Hash(password, user.getSalt());
+        user.setPassword(hash.toString());
         user.setEmail(email);
         user.setPhone(phone);
         user.setRegisterStatus(RegisterStatus.unConfim);
@@ -151,8 +150,14 @@ public class UserService {
         user.setSex((byte)1);
         user.setBirthYear(1997);
         user.setEntranceYear(2014);
-
-        userMapper.insert(user);
+        try {
+            userMapper.insert(user);
+            map.put("msg", "ok");
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            map.put("msg", "fail");
+        }
+        return map;
 
         //发送验证邮件
 //        eventProducer.fireEvent(new EventModel(EventType.LOGIN)
@@ -160,16 +165,25 @@ public class UserService {
 //                .setExt("email", email)
 //                .setActorId(Utils.SYSTEM_USERID));
 
-
-        // 登陆
-        user = selectByNickName(nickname);
-        String ticket = addLoginTicket(user.getId());
-        map.put("ticket", ticket);
-        return map;
     }
 
 
-    public Map<String, Object> login(String userstr, String password) {
+    public JSONObject login(String phoneOrEmail, String password, boolean rememberme) {
+        JSONObject result = new JSONObject();
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(phoneOrEmail, password);
+        if(rememberme){
+            token.setRememberMe(true);
+        }
+        try {
+            subject.login(token);
+            result.put("msg", "ok");
+        }catch (Exception e){
+            result.put("msg", "fail");
+        }
+        return result;
+
+        /*
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(userstr)) {
             map.put("msg", "用户名不能为空");
@@ -181,19 +195,19 @@ public class UserService {
             return map;
         }
 
-        User userByName = selectByNickName(userstr);
+//        User userByName = selectByNickName(userstr);
         User userByEmail = selectByEmail(userstr);
         User userByPhone = selectByPhone(userstr);
 
-        if (userByName == null && userByEmail == null && userByPhone == null) {
-            map.put("msg", "用户名不存在");
-            return map;
-        }
-
+//        if (userByName == null && userByEmail == null && userByPhone == null) {
+//            map.put("msg", "用户名不存在");
+//            return map;
+//        }
+//
         User user = null;
-        if(userByName != null){
-            user = userByName;
-        }
+//        if(userByName != null){
+//            user = userByName;
+//        }
         if(userByEmail != null){
             user = userByEmail;
         }
@@ -211,6 +225,8 @@ public class UserService {
         map.put("ticket", ticket);
         map.put("userId", user.getId());
         return map;
+        */
+
     }
 
     @Autowired
@@ -263,5 +279,10 @@ public class UserService {
 
         List<Feed> feeds = feedMapper.selectByExample(feedExample);
         return feeds;
+    }
+
+    public JSONObject getUser(String loginName, String password) {
+        return null;
+        //to do list
     }
 }

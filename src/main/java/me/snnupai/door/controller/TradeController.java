@@ -3,7 +3,6 @@ package me.snnupai.door.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.qiniu.common.Zone;
 import com.qiniu.storage.model.DefaultPutRet;
-import com.qiniu.util.Auth;							 
 import lombok.extern.slf4j.Slf4j;
 import me.snnupai.door.mapper.ImageMapper;
 import me.snnupai.door.model.EntityType;
@@ -17,6 +16,7 @@ import me.snnupai.door.status.TradeStatus;
 import me.snnupai.door.util.ImageUtils;
 import me.snnupai.door.util.JedisAdapter;
 import me.snnupai.door.util.RedisKeyUtil;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -27,20 +27,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.apache.commons.io.FileUtils;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+
 import static me.snnupai.door.util.ImageUtils.fileUpload;
-import static me.snnupai.door.util.Utils.fail;
-import static me.snnupai.door.util.Utils.ok;
-import static me.snnupai.door.util.Utils.page_size;
+import static me.snnupai.door.util.Utils.*;
 
 @Controller
 @Slf4j
